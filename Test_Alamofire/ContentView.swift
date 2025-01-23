@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct ContentView: View {
     var body: some View {
@@ -16,6 +17,16 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
+        .task {
+            test()
+        }
+    }
+}
+
+func test(){
+    let url = "https://jsonplaceholder.typicode.com/todos/1"
+    AF.request(url, method: .get).response{ res in
+        debugPrint(res)
     }
 }
 
